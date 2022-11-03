@@ -1,11 +1,9 @@
-# snowman project
+# p5.js
 
-This is a collobartive school project between Taust and Koko-Mx. 
- 
- 
+This is the Template Repl for p5.js.
 
-## basic rundown of our concept
+p5.js is a JavaScript library for creative coding, with a focus on making coding accessible and inclusive for artists, designers, educators, beginners, and anyone else! p5.js is free and open-source because we believe software, and the tools to learn it, should be accessible to everyone.
 
-blahblahblah
+[Check out the official docs here](https://p5js.org/reference/).
 
 
