@@ -1,6 +1,7 @@
 let phrases = ["fox in a box", "dog at the park", "cat has a hat"];
 let curPhrase;
 let guess;
+let whereyouguess= ''
 
 function setup() {
 	// Make the drawing canvase as big as the window
@@ -27,7 +28,8 @@ function selectRandomPhrase() {
 	guess = [];
 	for(let i = 0; i < curPhrase.length; i++) {
 		guess.push(curPhrase[i] == " " ? " " : "_"); 
-		print(i, guess[i]);
+    whereyouguess=join(guess, '')
+    //                               
 	}
 }
 
@@ -35,7 +37,7 @@ function draw() {
 	clear();
 	textSize(50);
 	text(curPhrase, 100, 60);
-	text(guess, 100, 150);
+	text(whereyouguess, 100, 150);
 }
 
 function keyPressed() {
@@ -49,6 +51,7 @@ function keyPressed() {
     	if (curPhrase[i] === key) {
 				result.push(i);
 				guess[i] = key;
+				whereyouguess=join(guess,'')
 			}
 		}
 		
