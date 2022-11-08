@@ -1,4 +1,4 @@
-let phrases = ["fox in a box", "dog at the park", "cat has a hat"];
+let phrases = ["fox in a box", "dog at the park", "cat has a hat", "where is the clock", "why are you there", "horse with shoes", "not a phrase"];
 let curPhrase;
 let guess, wrongguesses = [];
 let whereyouguess = '';
@@ -9,6 +9,8 @@ let p1score = 0;
 let p2score = 0;
 let printscore;
 let check = false;
+let notthesamephrase=0
+let index=0
 
 function setup() {
 	// Make the drawing canvase as big as the window
@@ -27,7 +29,7 @@ function setup() {
 
 
 function selectRandomPhrase() {
-	let index = Math.floor(random(0, phrases.length));
+	index = Math.floor(random(0, phrases.length));
 	print("index is ", index);
 	curPhrase = phrases[index];
 	guess = [];
@@ -43,7 +45,12 @@ function selectRandomPhrase() {
 function draw() {
 	clear();
 	if (!whereyouguess.includes("_")) {
+		notthesamephrase=index
 		index = Math.floor(random(0, phrases.length));
+		while (index==notthesamephrase){
+				index = Math.floor(random(0, phrases.length));
+		}
+		
 		curPhrase = phrases[index];
 		whereyouguess = []
 		guess = []
