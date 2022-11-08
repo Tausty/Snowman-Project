@@ -11,6 +11,8 @@ let printscore;
 let check = false;
 let notthesamephrase = 0
 let index = 0
+let timer1 = 60
+let timer2 = 60
 
 function setup() {
 	// Make the drawing canvase as big as the window
@@ -45,6 +47,7 @@ function selectRandomPhrase() {
 function draw() {
 	clear();
 	if (!whereyouguess.includes("_")) {
+		rightguesses = []
 		notthesamephrase = index
 		index = Math.floor(random(0, phrases.length));
 		while (index == notthesamephrase) {
@@ -74,6 +77,14 @@ function draw() {
 	text(join(wrongguesses, ' '), 100, 250);
 
 	showprogress();
+	text(timer1, 50, 50);
+	if (frameCount % 1 == 0 && timer1 > 0) {
+    timer1 --;
+  }
+  if (timer1 == 0) {
+    text("Time is up", 50, 100);
+  }
+  
 }
 
 function showprogress() {
@@ -136,7 +147,8 @@ function keyPressed() {
 			if (check == true && i == (curPhrase.length)-1) {
 				turn *= -1
 				append(rightguesses, key);
-			}
+			} else if (timer1 == 0)
+				turn =-1
 		}
 
 		// Check results for matches
