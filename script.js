@@ -95,21 +95,23 @@ function showprogress() {
 		switch (i) {
 			case 0:
 				letter = 'U';
+				fill(200,200,200);//snow gray 
+				ellipse(400,400,70)
 				break;
 			case 1:
 				letter = 'S';
+				ellipse(400,365,60)
 				break;
 			case 2:
 				letter = 'U';
+				ellipse(400,330,40)
 				break;
 			case 3:
-				letter = 'C';
+				line(370,365,330,395)
 				break;
 			case 4:
 				letter = 'K';
-				break;
-			case 5:
-				letter = '.';
+				line(430,365,470,395)
 				break;
 			default:
 				lost()
