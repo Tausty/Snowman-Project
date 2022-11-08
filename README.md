@@ -19,6 +19,6 @@ snowballs are used to remove a part off of your snowman, and add one for the ene
 there will be a seperate timer for both players (like in chess). once your timer reaches 0 you no longer can guess, or have a snowball thrown at you. once both timers are 0 end the game. whoever has the most points wins. 
 
 ### Extra rules:
-if you guess a letter that you already guess, it becomes wrong and adds a snowman peice. 
+if you guess a letter that you already guessed, it becomes wrong and adds a snowman peice. 
 
 
