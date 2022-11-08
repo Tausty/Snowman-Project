@@ -9,8 +9,8 @@ let p1score = 0;
 let p2score = 0;
 let printscore;
 let check = false;
-let notthesamephrase=0
-let index=0
+let notthesamephrase = 0
+let index = 0
 
 function setup() {
 	// Make the drawing canvase as big as the window
@@ -45,12 +45,12 @@ function selectRandomPhrase() {
 function draw() {
 	clear();
 	if (!whereyouguess.includes("_")) {
-		notthesamephrase=index
+		notthesamephrase = index
 		index = Math.floor(random(0, phrases.length));
-		while (index==notthesamephrase){
-				index = Math.floor(random(0, phrases.length));
+		while (index == notthesamephrase) {
+			index = Math.floor(random(0, phrases.length));
 		}
-		
+
 		curPhrase = phrases[index];
 		whereyouguess = []
 		guess = []
@@ -133,7 +133,7 @@ function keyPressed() {
 				whereyouguess = join(guess, ' ')
 				amountofsnowmanparts++
 			}
-			if (check == true && i == curPhrase.length) {
+			if (check == true && i == (curPhrase.length)-1) {
 				turn *= -1
 				append(rightguesses, key);
 			}
