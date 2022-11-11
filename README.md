@@ -1,9 +1,10 @@
 # Snowball Project
 
 This is a collaborative school project between Taust and Koko-Mx. 
- 
- 
 
+## Important!!!
+This code is not Javascript! it is p5js, a JavaScript library for creative coding. This means there is a lot of premade functions in use in this code, so it has to be run on something that supports that. If you wish to run this online, here is a [link](https://openprocessing.org/sketch/1723309) to run it on Open Processing. If you want to run this on VScode, I would reccomend this [extension](https://marketplace.visualstudio.com/items?itemName=samplavigne.p5-vscode#:~:text=Open%20the%20Command%20Palette%20with,your%20sketch%20in%20a%20browser)
+ 
 ## Basic Rundown of Our Concept
 
 ### How to Get Points:
