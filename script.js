@@ -1,4 +1,6 @@
-let phrases = ["fox in a box", "dog at the park", "cat has a hat", "where is the clock", "why are you there", "horse with shoes", "not a phrase"];
+let easyphrases = ["snowman", "seven", "cabbage", "eagles", "rabbets", "vaccine", "lettuce" ] 
+let hardphrases = ["four knapsacks", "zigzagging zigzags", "jumbo jukeboxes", "jogging wizards", "jovial wyverns", "jinxed xylophones", "ivory iceboxes"]
+let /*(change this when ready to implment) Medphrases*/phrases = ["fox in a box", "dog at the park", "cat has a hat", "where is the clock", "why are you there", "horse with shoes", "not a phrase"];
 let curPhrase;
 let guess, wrongguesses = [];
 let whereyouguess = '';
