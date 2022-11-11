@@ -7,10 +7,21 @@ This is a collaborative school project between Taust and Koko-Mx.
 ## Basic Rundown of Our Concept
 
 ### How to Get Points:
-every time you get a letter right by guessing, plus 1 point per letter. If you complete a word, plus 3 points and the player receives a snowball   
+every time you get a letter right by guessing, plus 1 point per letter. If you complete a word, you get points based on the diffuclty of the phrase, and the player receives a snowball   
 
 ### How to Lose Points:
 every time you get a letter wrong, minus one point, also add a part on the snowman. (he has 7 parts) if the snowman is completed lose half your points, and restart the word and snowman. 
+
+### Difficulty scaling
+There are 3 seperat types of phrases to guess: easy, medium, and hard. The player will first guess 2 easy phrases, then 2 medium, then it will loop hard ones untill the timer runs out.  
+
+Easy phrases will net you 3 points. 
+
+Meduim phrases will net you 5 points.   
+
+Hard phrases will net you 8 points. 
+
+this is to incentivice playing faster and less careful to try and keep the game at a fast pace. 
 
 ### What is a Snowball: 
 snowballs are used to remove a part off of your snowman, and add one for the enemys. 
@@ -20,5 +31,6 @@ there will be a seperate timer for both players (like in chess). once your timer
 
 ### Extra rules:
 if you guess a letter that you already guessed, it becomes wrong and adds a snowman peice. 
+
 
 
