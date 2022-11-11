@@ -79,12 +79,12 @@ function draw() {
 	showprogress();
 	text(timer1, 50, 50);
 	if (frameCount % 1 == 0 && timer1 > 0) {
-    timer1 --;
-  }
-  if (timer1 == 0) {
-    text("Time is up", 50, 100);
-  }
-  
+		timer1--;
+	}
+	if (timer1 == 0) {
+		text("Time is up", 50, 100);
+	}
+
 }
 
 function showprogress() {
@@ -95,27 +95,33 @@ function showprogress() {
 		switch (i) {
 			case 0:
 				letter = 'U';
-				fill(200,200,200);//snow gray 
-				ellipse(400,400,70)
+				fill(200, 200, 200); //snow gray 
+				ellipse(400, 400, 70)
 				break;
 			case 1:
+				fill(200, 200, 200); //snow gray
 				letter = 'S';
-				ellipse(400,365,60)
+				ellipse(400, 365, 60)
 				break;
 			case 2:
+				fill(200, 200, 200); //snow gray
 				letter = 'U';
-				ellipse(400,330,40)
+				ellipse(400, 330, 40)
 				break;
 			case 3:
-				line(370,365,330,395)
+				fill(200, 200, 200); //snow gray
+				letter = 'C';
+				line(370, 365, 330, 395)
 				break;
 			case 4:
+				fill(200, 200, 200); //snow gray
 				letter = 'K';
-				line(430,365,470,395)
+				line(430, 365, 470, 395)
 				break;
 			default:
 				lost()
 		}
+		fill(255, 0, 0) //red
 		text(letter, 400 + i * 30, 250);
 	}
 }
@@ -146,11 +152,11 @@ function keyPressed() {
 				whereyouguess = join(guess, ' ')
 				amountofsnowmanparts++
 			}
-			if (check == true && i == (curPhrase.length)-1) {
+			if (check == true && i == (curPhrase.length) - 1) {
 				turn *= -1
 				append(rightguesses, key);
 			} else if (timer1 == 0)
-				turn =-1
+				turn = -1
 		}
 
 		// Check results for matches
