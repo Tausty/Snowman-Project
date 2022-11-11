@@ -11,7 +11,7 @@ This code is not Javascript! it is p5js, a JavaScript library for creative codin
 every time you get a letter right by guessing, plus 1 point per letter. If you complete a word, you get points based on the diffuclty of the phrase, and the player receives a snowball   
 
 ### How to Lose Points:
-every time you get a letter wrong, minus one point, also add a part on the snowman. (he has 7 parts) if the snowman is completed lose half your points, and restart the word and snowman. 
+every time you get a letter wrong, minus one point, also add a part on the snowman. (it has 7 parts) if the snowman is completed lose half your points, and restart the word and snowman. 
 
 ### Difficulty scaling
 There are 3 seperat types of phrases to guess: easy, medium, and hard. The player will first guess 2 easy phrases, then 2 medium, then it will loop hard ones untill the timer runs out.  
