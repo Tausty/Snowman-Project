@@ -25,13 +25,18 @@ Hard phrases will net you 8 points.
 this is to incentivice playing faster and less careful to try and keep the game at a fast pace. 
 
 ### What is a Snowball: 
-snowballs are used to remove a part off of your snowman, and add one for the enemys. 
+snowballs are used to remove a part off of your snowman, and add one for the enemys. This feature is the least imporant on our list, and might not make it to the final copy. i hope to be able to add it.
 
 ### Timers:
 there will be a seperate timer for both players (like in chess). once your timer reaches 0 you no longer can guess, or have a snowball thrown at you. once both timers are 0 end the game. whoever has the most points wins. 
 
 ### Extra rules:
-if you guess a letter that you already guessed, it becomes wrong and adds a snowman peice. 
+if you guess a letter that you already guessed, it becomes wrong and adds a snowman peice.
+
+
+### Time
+this porject was supposed to be made in 6 hours, therefor there is going to be some time crunch. some features might be missing 
+
 
 
 
