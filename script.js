@@ -69,6 +69,7 @@ function draw() {
 	if (!whereyouguess.includes("_")) {
 		rightguesses = []
 		wrongguesses = []
+		p1score+=5
 		notthesamephrase = index
 		index = Math.floor(random(0, phrases.length));
 		while (index == notthesamephrase) {
@@ -82,22 +83,21 @@ function draw() {
 			guess.push(curPhrase[i] == " " ? " " : "_");
 			whereyouguess = join(guess, ' ')
 		}
-		/////player 2
-		clear();
-		if (!whereyouguess2.includes("_")) {
-			rightguesses2 = []
-			wrongguesses2 = []
-			p1score += 5
-			notthesamephrase2 = index
+	}
+	/////player 2
+	clear();
+	if (!whereyouguess2.includes("_")) {
+		rightguesses2 = []
+		wrongguesses2 = []
+		p2score += 5
+		notthesamephrase2 = index2
+		index2 = Math.floor(random(0, phrases.length));
+		while (index2 == notthesamephrase2) {
 			index2 = Math.floor(random(0, phrases.length));
-			while (index == notthesamephrase2) {
-				index2 = Math.floor(random(0, phrases.length));
-			}
 		}
 		curPhrase2 = phrases[index2];
 		whereyouguess2 = []
 		guess2 = []
-		p2score += 5
 		for (let i = 0; i < curPhrase2.length; i++) {
 			guess2.push(curPhrase2[i] == " " ? " " : "_");
 			whereyouguess2 = join(guess2, ' ')
@@ -244,7 +244,8 @@ function keyPressed() {
 					turn = -1
 			}
 		}
-		if (turn==-1){
+		let result2=[]
+		if (turn == -1) {
 			for (var I = 0; I < curPhrase2.length; I++) {
 
 				if (rightguesses2.includes(key))
@@ -259,7 +260,7 @@ function keyPressed() {
 						p2score++
 					}
 
-					result.push(I);
+					result2.push(I);
 					guess2[I] = key;
 					whereyouguess2 = join(guess2, ' ')
 					amountofsnowmanparts++
@@ -273,28 +274,27 @@ function keyPressed() {
 					turn = 1
 			}
 		}
-		// Check results for matches
-		if (result.length > 0) {
-			// we found a match
-		} else if (wrongguesses.includes(key) && turn == 1) {
+		if (check==false && turn == 1) {
+			if (!wrongguesses.includes(key)) {
+				wrongguesses.push(key);
+				turn*=1
 
 
-		} else if (turn == 1) {
-			wrongguesses.push(key);
-
+			}
 		}
 		// Check results for matches
-		if (result.length > 0) {
+		if (check==false && turn == -1) {
 			// we found a match
 
-		} else if (wrongguesses2.includes(key) && turn == -1) {
+			if (!wrongguesses2.includes(key)) {
+				wrongguesses2.push(key);
+				turn*=1
 
 
-		} else if (turn == -1) {
-			wrongguesses2.push(key);
+			}
+
 
 		}
-
 	}
 
 	function lost() {
