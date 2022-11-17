@@ -37,7 +37,7 @@ function setup() {
 	frameRate(60); // changes the frame rate, if you want to change dont forget about changing the timer 
 
 	// initiate game
-	selectRandomPhrase();// slects the first random phrase for p1
+	selectRandomPhrase(); // slects the first random phrase for p1
 	selectRandomPhrase2(); // selects the first random phrase for p2 
 }
 
@@ -66,62 +66,84 @@ function selectRandomPhrase2() {
 } // close selecting of random phrases for curphrase2
 
 function draw() {
-	/////player 1
-	clear();
-	resetp1();  // if the guessing space phrase is filled out, run a new one
-	/////player 2
-	clear();
-	resetp2(); // if the guessing space phrase is filled out, run a new one
-	
-	
-	check = false
-	textSize(20);
-	fill(0, 0, 0); // black
-	text(whereyouguess, 100, 150);
-	// prints the actual guessing space for p1 
 
-	textSize(20);
-	fill(0, 0, 0); // black
-	text(whereyouguess2, width - 400, 150);
-	// prints the actuall guessing space  for p2 
+	if (timer1 <= 1 && timer2 <= 1) {
+		if (p1score > p2score) {
+			clear()
+			textSize(100)
+			fill(255, 0, 0)
+			text("PLAYER 1 WINS", 100, 100)
+		} // win screen
+		if (p1score < p2score) {
+			clear()
+			textsize(100)
+			fill(255, 0, 0)
+			text("PLAYER 2 WINS", 100, 100)
+		} // winn screen
+	} // close both timer over check 
+	else {
+		/////player 1
+		clear();
+		resetp1(); // if the guessing space phrase is filled out, run a new one
+		/////player 2
+		clear();
+		resetp2(); // if the guessing space phrase is filled out, run a new one
 
-	text(p1score, 0, 50)
-	text(p2score, width - 50, 50)
-	//prints the score 
 
-	textSize(30);
-	fill(255, 0, 0); // red
-	text(join(wrongguesses, ' '), 100, 250);
-	// prints the wrongguess for p1 
+		check = false
+		textSize(20);
+		fill(0, 0, 0); // black
+		text(whereyouguess, 100, 150);
+		// prints the actual guessing space for p1 
 
-	textSize(30);
-	fill(255, 0, 0); // red
-	text(join(wrongguesses2, ' '), width - 350, 250);
-	// prints the wronguesses for p2
+		textSize(20);
+		fill(0, 0, 0); // black
+		text(whereyouguess2, width - 400, 150);
+		// prints the actuall guessing space  for p2 
 
-	
-	showprogress();// read comments there for more info
-	
-	
-	text(timer1, 150, 50);// actually prints the timer
-	if (turn == 1 && frameCount % 60 == 0 && timer1 > 0) {
-		timer1--;
-	}//runs the timer, frame count just collects all the frames, and every time its dibisable by 60 it changes the timer number
-	if (timer1 == 0) {
-		turn = -1
-		text("Time is up", 50, 100);
-	}// prints time is up when timer 1 is over, changes turn as well
-	
-	text(timer2, width - 250, 50); // actually prints the timer
-	if (turn == -1 && frameCount % 60 == 0 && timer2 > 0) {
-		timer2--;
-	} //runs the timer, frame count just collects all the frames, and every time its dibisable by 60 it changes the timer number
-	if (timer2 == 0) {
-		turn = 1
-		text("Time is up", width - 400, 100); 
-	}// prints time is up when timer 2 is over, changes turn as well. 
+		text(p1score, 0, 50)
+		text(p2score, width - 50, 50)
+		//prints the score 
 
-}// close draw 
+		textSize(30);
+		fill(255, 0, 0); // red
+		text(join(wrongguesses, ' '), 100, 250);
+		// prints the wrongguess for p1 
+
+		textSize(30);
+		fill(255, 0, 0); // red
+		text(join(wrongguesses2, ' '), width - 350, 250);
+		// prints the wronguesses for p2
+
+
+		showprogress(); // read comments there for more info
+
+
+		text(timer1, 150, 50); // actually prints the timer
+		if (turn == 1 && frameCount % 2 == 0 && timer1 >= 0) {
+			timer1--;
+		} //runs the timer, frame count just collects all the frames, and every time its dibisable by 60 it changes the timer number
+		if (timer1 == -1) {
+			timer1 = 0
+		} // for some reason there is a bug that wehn both timers finish, timer 1 becomes negative one, this should fix it?
+		if (timer1 == 0) {
+			turn = -1
+			text("Time is up", 50, 100);
+		} // prints time is up when timer 1 is over, changes turn as well
+
+		text(timer2, width - 250, 50); // actually prints the timer
+		if (turn == -1 && frameCount % 2 == 0 && timer2 > 0) {
+			timer2--;
+		} //runs the timer, frame count just collects all the frames, and every time its dibisable by 60 it changes the timer number
+		if (timer2 == -1) {
+			timer2 = 0
+		} // there is a bug with timer 1, hopfully this should prepare timer 2 for that 
+		if (timer2 == 0) {
+			turn = 1
+			text("Time is up", width - 400, 100);
+		} // prints time is up when timer 2 is over, changes turn as well. 
+	} // close else 
+} // close draw 
 
 function showprogress() {
 	textSize(50)
@@ -136,29 +158,29 @@ function showprogress() {
 			case 1:
 				fill(200, 200, 200); //snow gray 
 				ellipse(400, 365, 60)
-				break;// middle circle 
+				break; // middle circle 
 			case 2:
 				fill(200, 200, 200); //snow gray 
 				ellipse(400, 330, 40)
 				break; // top circle 
 			case 3:
 				line(370, 365, 330, 395)
-				break;// left arm
+				break; // left arm
 			case 4:
 				fill(200, 200, 200); //snow gray 
 				line(430, 365, 470, 395)
-				break;// right arm
+				break; // right arm
 			default:
 				p1score /= 2
 				wrongguesses = []
 				//snowman completed 
 
-		}// close weird if statment chain (idk what its called)
+		} // close weird if statment chain (idk what its called)
 		fill(255, 0, 0) //red
 		text(letter, 400 + i * 30, 250);
-	}// close for loop
-	
-	
+	} // close for loop
+
+
 	for (let i = 0; i < wrongguesses2.length; i++) {
 		let letter = ' '
 		switch (i) {
@@ -190,15 +212,17 @@ function showprogress() {
 		} // close the weird if statment chain thing (idk what its called)
 		fill(255, 0, 0) //red
 		text(letter, width - 500 + i * 30, 250); // prints nothing XD
-	}// close the loop
-}// close show progress 
+	} // close the loop
+} // close show progress 
 
 function keyPressed() {
+	let pleasework = false
 	if (key >= 'a' && key <= 'z') {
 
 		// Find all instances of key in curPhrase
 		let result = []; // gonna be honset no clue what this does, but it stays :D
-		if (turn == 1) {
+		if (turn == 1 && pleasework == false) {
+			pleasework = true
 			for (var i = 0; i < curPhrase.length; i++) {
 				if (timer1 == 0)
 					turn *= -1 // making sure that the timer is not over
@@ -210,19 +234,20 @@ function keyPressed() {
 					guess[i] = key;
 					whereyouguess = join(guess, ' ')
 					amountofsnowmanparts++ // this viarable is unused as well ooops
-				}// close correct guess checker 
+				} // close correct guess checker 
 				if (check == true && i == (curPhrase.length) - 1) {
 					turn *= -1
 					rightguesses.push(key)
 				} // this makes it so taht if u get a correct guess it goes to the next turn 
-				else if (check == false && i == (wrongguesses.length, wrongguesses2.length) + 1 && turn==1) {
+				else if (check == false && i == (wrongguesses.length, wrongguesses2.length) + 1 && turn == 1) {
 					turn *= -1
-				}// makes it so if you guess wrong it moves on 
-			}// close the checker 
-		}// close if turn==1
-		
+				} // makes it so if you guess wrong it moves on 
+			} // close the checker 
+		} // close if turn==1
+
 		let result2 = [] // idk why we have this :(
-		if (turn == -1) {
+		if (turn == -1 && pleasework == false) {
+			pleasework = true
 			for (var j = 0; j < curPhrase2.length; j++) {
 				if (timer2 == 0)
 					turn *= -1 // makes sure timer is not over 
@@ -233,33 +258,33 @@ function keyPressed() {
 					result2.push(j); // unused 
 					guess2[j] = key;
 					whereyouguess2 = join(guess2, ' ')
-					amountofsnowmanparts2++//unused
-				}// close correct guess checker 
+					amountofsnowmanparts2++ //unused
+				} // close correct guess checker 
 				if (check2 == true && j == (curPhrase2.length) - 1) {
 					turn *= -1
 					rightguesses2.push(key)
 				} // makes it so the turn moves on if u make a correct guess 
 				else if (check2 == false && j == (wrongguesses.length, wrongguesses2.length) + 1) {
 					turn *= -1
-				}// makes it so the turn moves on if u make a wrong guess 
-			}// close the checker 
-		}// close if turn==-1
-		
+				} // makes it so the turn moves on if u make a wrong guess 
+			} // close the checker 
+		} // close if turn==-1
+
 		if (check == false && turn == 1) { // if there was no correct guess, and the turn is right, add to wrong guessses
 			if (!wrongguesses.includes(key) && turn == 1) {
 				wrongguesses.push(key);
 				turn *= -1
-			}// close if 
-		}// close if  
-		
+			} // close if 
+		} // close if  
 		else if (check == false && turn == -1) { // if there was no correct guess, and the turn is right, and the prior if statment was wrong, add to wrong guesses
 			if (!wrongguesses2.includes(key) && turn == -1) {
 				wrongguesses2.push(key);
 				turn *= -1
-			}// close if 
-		}// close else if 
-	}// close making sure keys are not special characters 
-}//close keypressed
+			} // close if 
+		} // close else if 
+		pleasework = false
+	} // close making sure keys are not special characters 
+} //close keypressed
 
 
 function resetp1() {
@@ -281,10 +306,10 @@ function resetp1() {
 			whereyouguess = join(guess, ' ')
 		} // re make the the guess place 
 	} // close the reset 
-}// close resetp1 
+} // close resetp1 
 
 
-function resetp2(){
+function resetp2() {
 	if (!whereyouguess2.includes("_")) {
 		rightguesses2 = []
 		wrongguesses2 = []
@@ -301,5 +326,5 @@ function resetp2(){
 			guess2.push(curPhrase2[i] == " " ? " " : "_");
 			whereyouguess2 = join(guess2, ' ')
 		} // remaking the guess place 
-	}// close the reset 
-}// close resetp2
+	} // close the reset 
+} // close resetp2
