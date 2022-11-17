@@ -1,3 +1,4 @@
+let grade1phrases = ["girl", "boy", "hello", "four", "cat", "dog", "name"]
 let easyphrases = ["snowman", "seven", "cabbage", "eagles", "rabbets", "vaccine", "lettuce"]
 let hardphrases = ["four knapsacks", "zigzagging zigzags", "jumbo jukeboxes", "jogging wizards", "jovial wyverns", "jinxed xylophones", "ivory iceboxes"]
 let /*(change this when ready to implment) Medphrases*/ phrases = ["fox in a box", "dog at the park", "cat has a hat", "where is the clock", "why are you there", "horse with shoes", "not a phrase"];
@@ -23,19 +24,21 @@ let index2 = 0
 let timer1 = 60
 let timer2 = 60
 
+// should use classes here somewhere, but idk how to do that so L 
+
 function setup() {
 	// Make the drawing canvase as big as the window
 	createCanvas(windowWidth, windowHeight);
 
 	// Set the RGB background colour
-	background(250, 250, 250);
+	background(250, 250, 250); // white
 
 	// Set the frame rate
-	frameRate(1);
+	frameRate(60); // changes the frame rate, if you want to change dont forget about changing the timer 
 
 	// initiate game
-	selectRandomPhrase();
-	selectRandomPhrase2();
+	selectRandomPhrase();// slects the first random phrase for p1
+	selectRandomPhrase2(); // selects the first random phrase for p2 
 }
 
 
@@ -46,10 +49,10 @@ function selectRandomPhrase() {
 	guess = [];
 	wronguesses = [];
 	for (let i = 0; i < curPhrase.length; i++) {
-		guess.push(curPhrase[i] == " " ? " " : "_");
-		whereyouguess = join(guess, ' ')
-	}
-}
+		guess.push(curPhrase[i] == " " ? " " : "_"); // short hand if statments here, read below 
+		whereyouguess = join(guess, ' ') // the vierable names are really confusing here, dw about it 
+	} // close for loop
+} // close selecting of random phrases for curphrase 
 
 function selectRandomPhrase2() {
 	index2 = Math.floor(random(0, phrases.length));
@@ -57,24 +60,218 @@ function selectRandomPhrase2() {
 	guess2 = [];
 	wronguesses2 = [];
 	for (let i = 0; i < curPhrase2.length; i++) {
-		guess2.push(curPhrase2[i] == " " ? " " : "_");
-		whereyouguess2 = join(guess2, ' ')
-	}
-	//                               
-}
+		guess2.push(curPhrase2[i] == " " ? " " : "_"); // shorthand if statments here, just checcking for specific letters and replacing them
+		whereyouguess2 = join(guess2, ' ') // the virable names are really confusing here, dw about it 
+	} //close making the guess place                         
+} // close selecting of random phrases for curphrase2
 
 function draw() {
 	/////player 1
 	clear();
+	resetp1();  // if the guessing space phrase is filled out, run a new one
+	/////player 2
+	clear();
+	resetp2(); // if the guessing space phrase is filled out, run a new one
+	
+	
+	check = false
+	textSize(20);
+	fill(0, 0, 0); // black
+	text(whereyouguess, 100, 150);
+	// prints the actual guessing space for p1 
+
+	textSize(20);
+	fill(0, 0, 0); // black
+	text(whereyouguess2, width - 400, 150);
+	// prints the actuall guessing space  for p2 
+
+	text(p1score, 0, 50)
+	text(p2score, width - 50, 50)
+	//prints the score 
+
+	textSize(30);
+	fill(255, 0, 0); // red
+	text(join(wrongguesses, ' '), 100, 250);
+	// prints the wrongguess for p1 
+
+	textSize(30);
+	fill(255, 0, 0); // red
+	text(join(wrongguesses2, ' '), width - 350, 250);
+	// prints the wronguesses for p2
+
+	
+	showprogress();// read comments there for more info
+	
+	
+	text(timer1, 150, 50);// actually prints the timer
+	if (turn == 1 && frameCount % 60 == 0 && timer1 > 0) {
+		timer1--;
+	}//runs the timer, frame count just collects all the frames, and every time its dibisable by 60 it changes the timer number
+	if (timer1 == 0) {
+		turn = -1
+		text("Time is up", 50, 100);
+	}// prints time is up when timer 1 is over, changes turn as well
+	
+	text(timer2, width - 250, 50); // actually prints the timer
+	if (turn == -1 && frameCount % 60 == 0 && timer2 > 0) {
+		timer2--;
+	} //runs the timer, frame count just collects all the frames, and every time its dibisable by 60 it changes the timer number
+	if (timer2 == 0) {
+		turn = 1
+		text("Time is up", width - 400, 100); 
+	}// prints time is up when timer 2 is over, changes turn as well. 
+
+}// close draw 
+
+function showprogress() {
+	textSize(50)
+	fill(255, 0, 0); // red
+	for (let i = 0; i < wrongguesses.length; i++) {
+		let letter = ' '
+		switch (i) { // gonna be honest this chain of code is a black box, no clue how it works its from the sample code
+			case 0:
+				fill(200, 200, 200); //snow gray 
+				ellipse(400, 400, 70)
+				break; // bottem snowman circle 
+			case 1:
+				fill(200, 200, 200); //snow gray 
+				ellipse(400, 365, 60)
+				break;// middle circle 
+			case 2:
+				fill(200, 200, 200); //snow gray 
+				ellipse(400, 330, 40)
+				break; // top circle 
+			case 3:
+				line(370, 365, 330, 395)
+				break;// left arm
+			case 4:
+				fill(200, 200, 200); //snow gray 
+				line(430, 365, 470, 395)
+				break;// right arm
+			default:
+				p1score /= 2
+				wrongguesses = []
+				//snowman completed 
+
+		}// close weird if statment chain (idk what its called)
+		fill(255, 0, 0) //red
+		text(letter, 400 + i * 30, 250);
+	}// close for loop
+	
+	
+	for (let i = 0; i < wrongguesses2.length; i++) {
+		let letter = ' '
+		switch (i) {
+			case 0:
+
+				fill(200, 200, 200); //snow gray 
+				ellipse(width - 400, 400, 70)
+				break; // bottem snowman circle 
+			case 1:
+				fill(200, 200, 200); //snow gray 
+				ellipse(width - 400, 365, 60)
+				break; // middle circle 
+			case 2:
+				fill(200, 200, 200); //snow gray 
+				ellipse(width - 400, 330, 40)
+				break; // top circle 
+			case 3:
+				fill(200, 200, 200); //snow gray 
+				line(width - 370, 365, width - 330, 395)
+				break; // left arm
+			case 4:
+				fill(200, 200, 200); //snow gray 
+				line(width - 430, 365, width - 470, 395)
+				break; // right arm
+			default:
+				p2score /= 2
+				wrongguesses2 = []
+				// snowman completed 
+		} // close the weird if statment chain thing (idk what its called)
+		fill(255, 0, 0) //red
+		text(letter, width - 500 + i * 30, 250); // prints nothing XD
+	}// close the loop
+}// close show progress 
+
+function keyPressed() {
+	if (key >= 'a' && key <= 'z') {
+
+		// Find all instances of key in curPhrase
+		let result = []; // gonna be honset no clue what this does, but it stays :D
+		if (turn == 1) {
+			for (var i = 0; i < curPhrase.length; i++) {
+				if (timer1 == 0)
+					turn *= -1 // making sure that the timer is not over
+				if (curPhrase[i] === key && !rightguesses.includes(key) && turn == 1) {
+					check = true // for later use to prove that there was a correct guess 
+					p1score++
+
+					result.push(i); // again idk why this is here, result is not used anywhere else 
+					guess[i] = key;
+					whereyouguess = join(guess, ' ')
+					amountofsnowmanparts++ // this viarable is unused as well ooops
+				}// close correct guess checker 
+				if (check == true && i == (curPhrase.length) - 1) {
+					turn *= -1
+					rightguesses.push(key)
+				} // this makes it so taht if u get a correct guess it goes to the next turn 
+				else if (check == false && i == (wrongguesses.length, wrongguesses2.length) + 1 && turn==1) {
+					turn *= -1
+				}// makes it so if you guess wrong it moves on 
+			}// close the checker 
+		}// close if turn==1
+		
+		let result2 = [] // idk why we have this :(
+		if (turn == -1) {
+			for (var j = 0; j < curPhrase2.length; j++) {
+				if (timer2 == 0)
+					turn *= -1 // makes sure timer is not over 
+				else if (curPhrase2[j] === key && !rightguesses2.includes(key) && turn == -1) {
+					check2 = true // for later use to prove there was a correct guess 
+					p2score++
+
+					result2.push(j); // unused 
+					guess2[j] = key;
+					whereyouguess2 = join(guess2, ' ')
+					amountofsnowmanparts2++//unused
+				}// close correct guess checker 
+				if (check2 == true && j == (curPhrase2.length) - 1) {
+					turn *= -1
+					rightguesses2.push(key)
+				} // makes it so the turn moves on if u make a correct guess 
+				else if (check2 == false && j == (wrongguesses.length, wrongguesses2.length) + 1) {
+					turn *= -1
+				}// makes it so the turn moves on if u make a wrong guess 
+			}// close the checker 
+		}// close if turn==-1
+		
+		if (check == false && turn == 1) { // if there was no correct guess, and the turn is right, add to wrong guessses
+			if (!wrongguesses.includes(key) && turn == 1) {
+				wrongguesses.push(key);
+				turn *= -1
+			}// close if 
+		}// close if  
+		
+		else if (check == false && turn == -1) { // if there was no correct guess, and the turn is right, and the prior if statment was wrong, add to wrong guesses
+			if (!wrongguesses2.includes(key) && turn == -1) {
+				wrongguesses2.push(key);
+				turn *= -1
+			}// close if 
+		}// close else if 
+	}// close making sure keys are not special characters 
+}//close keypressed
+
+
+function resetp1() {
 	if (!whereyouguess.includes("_")) {
 		rightguesses = []
 		wrongguesses = []
-		p1score+=5
+		p1score += 5
 		notthesamephrase = index
 		index = Math.floor(random(0, phrases.length));
 		while (index == notthesamephrase) {
 			index = Math.floor(random(0, phrases.length));
-		}
+		} //close making the current prhase not equal to the last one
 
 		curPhrase = phrases[index];
 		whereyouguess = []
@@ -82,10 +279,12 @@ function draw() {
 		for (let i = 0; i < curPhrase.length; i++) {
 			guess.push(curPhrase[i] == " " ? " " : "_");
 			whereyouguess = join(guess, ' ')
-		}
-	}
-	/////player 2
-	clear();
+		} // re make the the guess place 
+	} // close the reset 
+}// close resetp1 
+
+
+function resetp2(){
 	if (!whereyouguess2.includes("_")) {
 		rightguesses2 = []
 		wrongguesses2 = []
@@ -94,213 +293,13 @@ function draw() {
 		index2 = Math.floor(random(0, phrases.length));
 		while (index2 == notthesamephrase2) {
 			index2 = Math.floor(random(0, phrases.length));
-		}
+		} // close making the current phrase not equal to the last one 
 		curPhrase2 = phrases[index2];
 		whereyouguess2 = []
 		guess2 = []
 		for (let i = 0; i < curPhrase2.length; i++) {
 			guess2.push(curPhrase2[i] == " " ? " " : "_");
 			whereyouguess2 = join(guess2, ' ')
-		}
-
-	}
-	check = false
-	textSize(20);
-	fill(0, 0, 0); // black
-	text(whereyouguess, 100, 150);
-
-	textSize(20);
-	fill(0, 0, 0); // black
-	text(whereyouguess2, width - 400, 150);
-
-	text(p1score, 0, 50)
-	text(p2score, width - 50, 50)
-
-	textSize(30);
-	fill(255, 0, 0); // red
-	text(join(wrongguesses, ' '), 100, 250);
-
-	textSize(30);
-	fill(255, 0, 0); // red
-	text(join(wrongguesses2, ' '), width - 350, 250);
-
-	showprogress();
-	text(timer1, 150, 50);
-	if (turn == 1 && frameCount % 1 == 0 && timer1 > 0) {
-		timer1--;
-	}
-	if (timer1 == 0) {
-		text("Time is up", 50, 100);
-	}
-	text(timer2, width - 250, 50);
-	if (turn == -1 && frameCount % 1 == 0 && timer2 > 0) {
-		timer2--;
-	}
-	if (timer2 == 0) {
-		text("Time is up", 500, 100);
-	}
-
-}
-
-function showprogress() {
-	textSize(50)
-	fill(255, 0, 0); // red
-	for (let i = 0; i < wrongguesses.length; i++) {
-		let letter = ' '
-		switch (i) {
-			case 0:
-				fill(200, 200, 200); //snow gray 
-				ellipse(400, 400, 70)
-				break;
-			case 1:
-				fill(200, 200, 200); //snow gray 
-				ellipse(400, 365, 60)
-				break;
-			case 2:
-				fill(200, 200, 200); //snow gray 
-				ellipse(400, 330, 40)
-				break;
-			case 3:
-				line(370, 365, 330, 395)
-				break;
-			case 4:
-				fill(200, 200, 200); //snow gray 
-				line(430, 365, 470, 395)
-				break;
-			default:
-
-				p1score /= 2
-				wrongguesses = []
-
-		}
-		fill(255, 0, 0) //red
-		text(letter, 400 + i * 30, 250);
-	}
-	for (let i = 0; i < wrongguesses2.length; i++) {
-		let letter = ' '
-		switch (i) {
-			case 0:
-
-				fill(200, 200, 200); //snow gray 
-				ellipse(width - 400, 400, 70)
-				break;
-			case 1:
-				fill(200, 200, 200); //snow gray 
-				ellipse(width - 400, 365, 60)
-				break;
-			case 2:
-				fill(200, 200, 200); //snow gray 
-				ellipse(width - 400, 330, 40)
-				break;
-			case 3:
-				fill(200, 200, 200); //snow gray 
-				line(width - 370, 365, width - 330, 395)
-				break;
-			case 4:
-				fill(200, 200, 200); //snow gray 
-				line(width - 430, 365, width - 470, 395)
-				break;
-			default:
-				p2score /= 2
-				wrongguesses2 = []
-
-		}
-		fill(255, 0, 0) //red
-		text(letter, width - 500 + i * 30, 250);
-	}
-}
-
-function keyPressed() {
-	if (key >= 'a' && key <= 'z') {
-
-		// Find all instances of key in curPhrase
-		let result = [];
-		if (turn == 1) {
-			for (var i = 0; i < curPhrase.length; i++) {
-
-				if (rightguesses.includes(key))
-					check = false
-
-				else if (curPhrase[i] === key) {
-					check = true
-					if (turn == 1) {
-						p1score++
-					}
-					if (turn == -1) {
-						p2score++
-					}
-
-					result.push(i);
-					guess[i] = key;
-					whereyouguess = join(guess, ' ')
-					amountofsnowmanparts++
-				}
-				if (check == true && i == (curPhrase.length) - 1) {
-					turn *= -1
-					append(rightguesses, key);
-				} else if (check == false && i == (wrongguesses.length, wrongguesses2.length) + 1) {
-					turn *= -1
-				} else if (timer1 == 0)
-					turn = -1
-			}
-		}
-		let result2=[]
-		if (turn == -1) {
-			for (var I = 0; I < curPhrase2.length; I++) {
-
-				if (rightguesses2.includes(key))
-					check2 = false
-
-				else if (curPhrase2[I] === key) {
-					check2 = true
-					if (turn == 1) {
-						p1score++
-					}
-					if (turn == -1) {
-						p2score++
-					}
-
-					result2.push(I);
-					guess2[I] = key;
-					whereyouguess2 = join(guess2, ' ')
-					amountofsnowmanparts++
-				}
-				if (check2 == true && I == (curPhrase2.length) - 1) {
-					turn *= -1
-					append(rightguesses2, key);
-				} else if (check2 == false && I == (wrongguesses.length, wrongguesses2.length) + 1) {
-					turn *= -1
-				} else if (timer2 == 0)
-					turn = 1
-			}
-		}
-		if (check==false && turn == 1) {
-			if (!wrongguesses.includes(key)) {
-				wrongguesses.push(key);
-				turn*=1
-
-
-			}
-		}
-		// Check results for matches
-		if (check==false && turn == -1) {
-			// we found a match
-
-			if (!wrongguesses2.includes(key)) {
-				wrongguesses2.push(key);
-				turn*=1
-
-
-			}
-
-
-		}
-	}
-
-	function lost() {
-		clear()
-		textSize(100)
-		fill(255, 0, 0) //red
-		text("You lost", 300, 300)
-	}
-}
+		} // remaking the guess place 
+	}// close the reset 
+}// close resetp2
