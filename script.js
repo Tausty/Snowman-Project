@@ -25,6 +25,8 @@ let timer1 = 60
 let timer2 = 60
 let wrongguesseslength = wrongguesses.length
 let wrongguesses2length = wrongguesses2.length
+let completedphrases = 0
+let completedphrases2 = 0
 
 // should use classes here somewhere, but idk how to do that so L 
 
@@ -47,7 +49,7 @@ function setup() {
 
 function selectRandomPhrase() {
 	index = Math.floor(random(0, phrases.length));
-	curPhrase = phrases[index];
+	curPhrase = easyphrases[index];
 	guess = [];
 	wronguesses = [];
 	for (let i = 0; i < curPhrase.length; i++) {
@@ -58,7 +60,7 @@ function selectRandomPhrase() {
 
 function selectRandomPhrase2() {
 	index2 = Math.floor(random(0, phrases.length));
-	curPhrase2 = phrases[index2];
+	curPhrase2 = easyphrases[index2];
 	guess2 = [];
 	wronguesses2 = [];
 	for (let i = 0; i < curPhrase2.length; i++) {
@@ -120,13 +122,13 @@ function draw() {
 
 		showprogress(); // read comments there for more info
 
-
+fill(255,0,0) //red
 		text(timer1, 150, 50); // actually prints the timer
 		if (turn == 1 && frameCount % 60 == 0 && timer1 >= 0) {
 			timer1--;
 		} else if (turn == 1) {
-			ellipse(50, 50, 50)
 			fill(0, 255, 0)
+			ellipse(50, 50, 50)
 		} //runs the timer, frame count just collects all the frames, and every time its dibisable by 60 it changes the timer number
 		if (timer1 == -1) {
 			timer1 = 0
@@ -135,13 +137,14 @@ function draw() {
 			turn = -1
 			text("Time is up", 50, 100);
 		} // prints time is up when timer 1 is over, changes turn as well
-
+		
+		fill(255,0,0)//red
 		text(timer2, width - 250, 50); // actually prints the timer
 		if (turn == -1 && frameCount % 60 == 0 && timer2 > 0) {
 			timer2--;
 		} else if (turn == -1) {
-			ellipse(width - 100, 50, 50)
 			fill(0, 255, 0)
+			ellipse(width - 100, 50, 50)
 		} //runs the timer, frame count just collects all the frames, and every time its dibisable by 60 it changes the timer number
 		if (timer2 == -1) {
 			timer2 = 0
@@ -312,6 +315,7 @@ function keyPressed() {
 
 function resetp1() {
 	if (!whereyouguess.includes("_")) {
+		completedphrases += 1
 		rightguesses = []
 		wrongguesses = []
 		p1score += 5
@@ -321,7 +325,15 @@ function resetp1() {
 			index = Math.floor(random(0, phrases.length));
 		} //close making the current prhase not equal to the last one
 
-		curPhrase = phrases[index];
+		if (completedphrases <= 2) {
+			curPhrase = easyphrases[index];
+		}
+		if (completedphrases > 2 && completedphrases <= 5) {
+			curPhrase = phrases[index];
+		}
+		if (completedphrases > 5) {
+			curPhrase = hardphrases[index];
+		}
 		whereyouguess = []
 		guess = []
 		for (let i = 0; i < curPhrase.length; i++) {
@@ -334,6 +346,7 @@ function resetp1() {
 
 function resetp2() {
 	if (!whereyouguess2.includes("_")) {
+		completedphrases2 += 1
 		rightguesses2 = []
 		wrongguesses2 = []
 		p2score += 5
@@ -342,7 +355,15 @@ function resetp2() {
 		while (index2 == notthesamephrase2) {
 			index2 = Math.floor(random(0, phrases.length));
 		} // close making the current phrase not equal to the last one 
-		curPhrase2 = phrases[index2];
+		if (completedphrases2 <= 2) {
+			curPhrase2 = easyphrases[index2];
+		}
+		if (completedphrases2 > 2 && completedphrases2 <= 5) {
+			curPhrase2 = phrases[index2];
+		}
+		if (completedphrases2 > 5) {
+			curPhrase2 = hardphrases[index2];
+		}
 		whereyouguess2 = []
 		guess2 = []
 		for (let i = 0; i < curPhrase2.length; i++) {
