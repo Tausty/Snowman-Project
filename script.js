@@ -23,6 +23,8 @@ let index = 0
 let index2 = 0
 let timer1 = 60
 let timer2 = 60
+let wrongguesseslength = wrongguesses.length
+let wrongguesses2length = wrongguesses2.length
 
 // should use classes here somewhere, but idk how to do that so L 
 
@@ -76,7 +78,7 @@ function draw() {
 		} // win screen
 		if (p1score < p2score) {
 			clear()
-			textsize(100)
+			textSize(100)
 			fill(255, 0, 0)
 			text("PLAYER 2 WINS", 100, 100)
 		} // winn screen
@@ -120,8 +122,11 @@ function draw() {
 
 
 		text(timer1, 150, 50); // actually prints the timer
-		if (turn == 1 && frameCount % 2 == 0 && timer1 >= 0) {
+		if (turn == 1 && frameCount % 60 == 0 && timer1 >= 0) {
 			timer1--;
+		} else if (turn == 1) {
+			ellipse(50, 50, 50)
+			fill(0, 255, 0)
 		} //runs the timer, frame count just collects all the frames, and every time its dibisable by 60 it changes the timer number
 		if (timer1 == -1) {
 			timer1 = 0
@@ -132,8 +137,11 @@ function draw() {
 		} // prints time is up when timer 1 is over, changes turn as well
 
 		text(timer2, width - 250, 50); // actually prints the timer
-		if (turn == -1 && frameCount % 2 == 0 && timer2 > 0) {
+		if (turn == -1 && frameCount % 60 == 0 && timer2 > 0) {
 			timer2--;
+		} else if (turn == -1) {
+			ellipse(width - 100, 50, 50)
+			fill(0, 255, 0)
 		} //runs the timer, frame count just collects all the frames, and every time its dibisable by 60 it changes the timer number
 		if (timer2 == -1) {
 			timer2 = 0
@@ -223,10 +231,13 @@ function keyPressed() {
 		let result = []; // gonna be honset no clue what this does, but it stays :D
 		if (turn == 1 && pleasework == false) {
 			pleasework = true
+			wrongguesseslength = wrongguesses.length
+			check = false
 			for (var i = 0; i < curPhrase.length; i++) {
 				if (timer1 == 0)
 					turn *= -1 // making sure that the timer is not over
 				if (curPhrase[i] === key && !rightguesses.includes(key) && turn == 1) {
+
 					check = true // for later use to prove that there was a correct guess 
 					p1score++
 
@@ -236,18 +247,20 @@ function keyPressed() {
 					amountofsnowmanparts++ // this viarable is unused as well ooops
 				} // close correct guess checker 
 				if (check == true && i == (curPhrase.length) - 1) {
-					turn *= -1
 					rightguesses.push(key)
 				} // this makes it so taht if u get a correct guess it goes to the next turn 
-				else if (check == false && i == (wrongguesses.length, wrongguesses2.length) + 1 && turn == 1) {
+				else if (check == false && i == curPhrase.length - 1 && wrongguesses.length != wrongguesseslength && turn == 1) {
 					turn *= -1
+					wrongguesseslength = wrongguesses.length
 				} // makes it so if you guess wrong it moves on 
 			} // close the checker 
 		} // close if turn==1
 
 		let result2 = [] // idk why we have this :(
 		if (turn == -1 && pleasework == false) {
+			wrongguesses2length = wrongguesses2.length
 			pleasework = true
+			check2 = false
 			for (var j = 0; j < curPhrase2.length; j++) {
 				if (timer2 == 0)
 					turn *= -1 // makes sure timer is not over 
@@ -261,11 +274,11 @@ function keyPressed() {
 					amountofsnowmanparts2++ //unused
 				} // close correct guess checker 
 				if (check2 == true && j == (curPhrase2.length) - 1) {
-					turn *= -1
 					rightguesses2.push(key)
 				} // makes it so the turn moves on if u make a correct guess 
-				else if (check2 == false && j == (wrongguesses.length, wrongguesses2.length) + 1) {
+				else if (check2 == false && j == curPhrase2.length - 1 && wrongguesses2length != wrongguesses2.length && turn == -1) {
 					turn *= -1
+					wrongguesses2length = wrongguesses2.length
 				} // makes it so the turn moves on if u make a wrong guess 
 			} // close the checker 
 		} // close if turn==-1
@@ -276,13 +289,23 @@ function keyPressed() {
 				turn *= -1
 			} // close if 
 		} // close if  
-		else if (check == false && turn == -1) { // if there was no correct guess, and the turn is right, and the prior if statment was wrong, add to wrong guesses
+		else if (check2 == false && turn == -1) { // if there was no correct guess, and the turn is right, and the prior if statment was wrong, add to wrong guesses
 			if (!wrongguesses2.includes(key) && turn == -1) {
 				wrongguesses2.push(key);
 				turn *= -1
 			} // close if 
 		} // close else if 
 		pleasework = false
+		if (check == true) {
+			turn *= -1
+			check = false
+			check2 = false
+		}
+		if (check2 == true) {
+			turn *= -1
+			check2 = false
+			check = false
+		}
 	} // close making sure keys are not special characters 
 } //close keypressed
 
