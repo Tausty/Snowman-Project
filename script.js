@@ -335,7 +335,6 @@ function resetp1() {
 		completedphrases += 1
 		rightguesses = []
 		snowballcount+=1
-		p1score += 5
 		notthesamephrase = index
 		index = Math.floor(random(0, phrases.length));
 		while (index == notthesamephrase) {
@@ -344,12 +343,15 @@ function resetp1() {
 
 		if (completedphrases <= 2) {
 			curPhrase = easyphrases[index];
+			p1score += 3
 		}
 		if (completedphrases > 2 && completedphrases <= 5) {
 			curPhrase = phrases[index];
+			p1score += 5
 		}
 		if (completedphrases > 5) {
 			curPhrase = hardphrases[index];
+			p1score += 8
 		}
 		whereyouguess = []
 		guess = []
@@ -366,7 +368,6 @@ function resetp2() {
 		completedphrases2 += 1
 		rightguesses2 = []
 		snowballcount2+=1
-		p2score += 5
 		notthesamephrase2 = index2
 		index2 = Math.floor(random(0, phrases.length));
 		while (index2 == notthesamephrase2) {
@@ -374,12 +375,15 @@ function resetp2() {
 		} // close making the current phrase not equal to the last one 
 		if (completedphrases2 <= 2) {
 			curPhrase2 = easyphrases[index2];
+			p2score += 3
 		}
 		if (completedphrases2 > 2 && completedphrases2 <= 5) {
 			curPhrase2 = phrases[index2];
+			p2score += 5
 		}
 		if (completedphrases2 > 5) {
 			curPhrase2 = hardphrases[index2];
+			p2score += 8
 		}
 		whereyouguess2 = []
 		guess2 = []
