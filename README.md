@@ -7,8 +7,11 @@ This code is not Javascript! it is p5js, a JavaScript library for creative codin
  
 
 ## how to play
-players take turns guessing thier indivuidual phrases. 
-player 1 can press ~ to throw a snowball, and player 2 can press \
+players take turns guessing thier indivuidual phrases.  
+
+player 1 can press "~" to throw a snowball, and player 2 can press "\"    
+
+player with the highest points once both timers run out wins.   
 
 
 ## Basic Rundown of Our Concept
@@ -17,7 +20,7 @@ player 1 can press ~ to throw a snowball, and player 2 can press \
 every time you get a letter right by guessing, plus 1 point per letter. If you complete a word, you get points based on the diffuclty of the phrase, and the player receives a snowball   
 
 ### How to Lose Points:
-every time you get a letter wrong, minus one point, also add a part on the snowman. (it has 7 parts) if the snowman is completed lose half your points, and restart the word and snowman. 
+every time you get a letter wrong, minus one point, also add a part on the snowman. (it has 6 parts) if the snowman is completed lose half your points, and restart the word and snowman. 
 
 ### Difficulty scaling
 There are 3 seperat types of phrases to guess: easy, medium, and hard. The player will first guess 2 easy phrases, then 2 medium, then it will loop hard ones untill the timer runs out.  
@@ -44,7 +47,7 @@ if you guess a letter that you already guessed, it becomes wrong and adds a snow
 - the game starts with 3 easy phrases, 3 meduim phrases, then hard phrases until the timer runs out.
 - phrases are choesn at random, and have code to try and stop repeats. 
 - a timer for each player is running at all times, and will alternate depending on whos turn it is
-- for each wrong guess a snowman peice is added, once you reach 5 you lost half your points
+- for each wrong guess a snowman peice is added, once you reach 6 you lost half your points, and the wrong guesses reset (making it so if you dont remember your wrong guesses you get punished)
 - if you can complete a phrases you can get a snowball that you can throw at the other player to add a snowman peice. 
 - once both timers end which ever player has more points will win, with an according win screen. 
 
