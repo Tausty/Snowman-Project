@@ -5,6 +5,12 @@ This is a collaborative school project between Taust and Koko-Mx.
 ## Important!!!
 This code is not Javascript! it is p5js, a JavaScript library for creative coding. This means there is a lot of premade functions in use in this code, so it has to be run on something that supports that. If you wish to run this online, here is a [link](https://openprocessing.org/sketch/1723309) to run it on Open Processing. If you want to run this on VScode, I would reccomend this [extension](https://marketplace.visualstudio.com/items?itemName=samplavigne.p5-vscode#:~:text=Open%20the%20Command%20Palette%20with,your%20sketch%20in%20a%20browser)
  
+
+## how to play
+players take turns guessing thier indivuidual phrases. 
+player 1 can press ~ to throw a snowball, and player 2 can press \
+
+
 ## Basic Rundown of Our Concept
 
 ### How to Get Points:
@@ -33,9 +39,18 @@ there will be a seperate timer for both players (like in chess). once your timer
 ### Extra rules:
 if you guess a letter that you already guessed, it becomes wrong and adds a snowman peice.
 
+## Psudo psudeo code 
+- there are 3 diffucly of phrases, each with 7 phrases
+- the game starts with 3 easy phrases, 3 meduim phrases, then hard phrases until the timer runs out.
+- phrases are choesn at random, and have code to try and stop repeats. 
+- a timer for each player is running at all times, and will alternate depending on whos turn it is
+- for each wrong guess a snowman peice is added, once you reach 5 you lost half your points
+- if you can complete a phrases you can get a snowball that you can throw at the other player to add a snowman peice. 
+- once both timers end which ever player has more points will win, with an according win screen. 
 
-### Time
-this porject was supposed to be made in 6 hours, therefor there is going to be some time crunch. some features might be missing 
+
+
+
 
 
 
