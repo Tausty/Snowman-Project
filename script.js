@@ -29,6 +29,7 @@ let completedphrases = 0
 let completedphrases2 = 0
 let snowballcount=1
 let snowballcount2=1
+let stage=0
 
 // should use classes here somewhere, but idk how to do that so L 
 
@@ -45,6 +46,31 @@ function setup() {
 	// initiate game
 	selectRandomPhrase(); // slects the first random phrase for p1
 	selectRandomPhrase2(); // selects the first random phrase for p2 
+}
+function draw(){
+	if (stage==0)
+		title()
+	if (key==' ' && stage==0){
+		stage+=1
+	}
+	if (stage==1)
+		game()
+	if (stage==2 && p1score>p2score)
+		p1vic()
+	else if (stage==2 && p2score>p1score)
+		p2vic()
+		
+}
+
+function title(){
+	textAlign(CENTER)
+	textSize(70)
+	text('Go Go Snowman \n Press The Space Key to Play!',width/2,height/2+-200)
+	textSize(30)
+	text("Each player takes turn guessing,\n every wrong guess will add a snowman peice. At 6 you lose points",width/2,height/2-50)
+	text("Once you complete a phrase, you receive a snowball. \n player 1 can press the ~ key to throw it, and player 2 can press \\", width/2,height/2+50)
+
+	textAlign(LEFT)
 }
 
 
@@ -71,7 +97,7 @@ function selectRandomPhrase2() {
 	} //close making the guess place                         
 } // close selecting of random phrases for curphrase2
 
-function draw() {
+function game() {
 
 	if (timer1 <= 1 && timer2 <= 1) {
 		if (p1score > p2score) {
