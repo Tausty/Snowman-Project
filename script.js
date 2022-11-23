@@ -120,7 +120,13 @@ function draw() {
 		fill(255, 0, 0); // red
 		text(join(wrongguesses2, ' '), width - 350, 250);
 		// prints the wronguesses for p2
-
+		
+		fill(130, 130, 130)
+		text("Snow: " + snowballcount, 10, 300)
+		
+		fill(130, 130, 130)
+		text("Snow: " + snowballcount2, width-150, 300)
+		
 
 		showprogress(); // read comments there for more info
 
@@ -233,7 +239,7 @@ function keyPressed() {
 		append(wrongguesses2,'O')
 		snowballcount-=1
 	}
-	if (key == '/' && snowballcount2>1){
+	if (key == '\\' && snowballcount2>1){
 		append(wrongguesses,'O')
 		snowballcount2-=1
 			
@@ -383,4 +389,3 @@ function resetp2() {
 		} // remaking the guess place 
 	} // close the reset 
 } // close resetp2
-
