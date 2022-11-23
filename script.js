@@ -27,6 +27,8 @@ let wrongguesseslength = wrongguesses.length
 let wrongguesses2length = wrongguesses2.length
 let completedphrases = 0
 let completedphrases2 = 0
+let snowballcount=1
+let snowballcount2=1
 
 // should use classes here somewhere, but idk how to do that so L 
 
@@ -227,6 +229,15 @@ function showprogress() {
 } // close show progress 
 
 function keyPressed() {
+	if (key=='`' && snowballcount>1){
+		append(wrongguesses2,'O')
+		snowballcount-=1
+	}
+	if (key == '/' && snowballcount2>1){
+		append(wrongguesses,'O')
+		snowballcount2-=1
+			
+	}
 	let pleasework = false
 	if (key >= 'a' && key <= 'z') {
 
@@ -317,7 +328,7 @@ function resetp1() {
 	if (!whereyouguess.includes("_")) {
 		completedphrases += 1
 		rightguesses = []
-		wrongguesses = []
+		snowballcount+=1
 		p1score += 5
 		notthesamephrase = index
 		index = Math.floor(random(0, phrases.length));
@@ -348,7 +359,7 @@ function resetp2() {
 	if (!whereyouguess2.includes("_")) {
 		completedphrases2 += 1
 		rightguesses2 = []
-		wrongguesses2 = []
+		snowballcount2+=1
 		p2score += 5
 		notthesamephrase2 = index2
 		index2 = Math.floor(random(0, phrases.length));
@@ -372,3 +383,4 @@ function resetp2() {
 		} // remaking the guess place 
 	} // close the reset 
 } // close resetp2
+
