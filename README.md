@@ -9,7 +9,7 @@ This code is not Javascript! it is p5js, a JavaScript library for creative codin
 ## how to play
 players take turns guessing thier indivuidual phrases.  
 
-player 1 can press "~" to throw a snowball, and player 2 can press "\"    
+player 1 can press "~" to throw a snowball, and player 2 can press "\\"    
 
 player with the highest points once both timers run out wins.   
 
