@@ -117,7 +117,17 @@ function game() {
 			text("PLAYER 2 WINS", width/4-50, height/2)
 			textSize(40)
 			text("Reload to Play Again", width/3,height/2+200)
-		} // winn screen
+		} 
+		if (p1score == p2score) {
+			clear()
+			textAlign(LEFT)
+			textSize(100)
+			fill(255, 0, 0)
+			text("DRAW", width/4+150, height/2)
+			textSize(40)
+			text("Reload to Play Again", width/3,height/2+200)
+		// winn screen
+		}
 	} // close both timer over check 
 	else {
 		/////player 1
