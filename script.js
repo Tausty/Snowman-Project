@@ -27,8 +27,8 @@ let wrongguesseslength = wrongguesses.length
 let wrongguesses2length = wrongguesses2.length
 let completedphrases = 0
 let completedphrases2 = 0
-let snowballcount=1
-let snowballcount2=1
+let snowballcount=0
+let snowballcount2=0
 let stage=0
 
 // should use classes here somewhere, but idk how to do that so L 
@@ -261,11 +261,11 @@ function showprogress() {
 } // close show progress 
 
 function keyPressed() {
-	if (key=='`' && snowballcount>1){
+	if (key=='`' && snowballcount>=1){
 		append(wrongguesses2,'O')
 		snowballcount-=1
 	}
-	if (key == '\\' && snowballcount2>1){
+	if (key == '\\' && snowballcount2>=1){
 		append(wrongguesses,'O')
 		snowballcount2-=1
 			
@@ -370,14 +370,17 @@ function resetp1() {
 		if (completedphrases <= 2) {
 			curPhrase = easyphrases[index];
 			p1score += 3
+			timer1 += 5
 		}
 		if (completedphrases > 2 && completedphrases <= 5) {
 			curPhrase = phrases[index];
 			p1score += 5
+			timer1 += 8
 		}
 		if (completedphrases > 5) {
 			curPhrase = hardphrases[index];
 			p1score += 8
+			timer1 += 10
 		}
 		whereyouguess = []
 		guess = []
@@ -402,14 +405,17 @@ function resetp2() {
 		if (completedphrases2 <= 2) {
 			curPhrase2 = easyphrases[index2];
 			p2score += 3
+			timer2 += 5
 		}
 		if (completedphrases2 > 2 && completedphrases2 <= 5) {
 			curPhrase2 = phrases[index2];
 			p2score += 5
+			timer2 += 8
 		}
 		if (completedphrases2 > 5) {
 			curPhrase2 = hardphrases[index2];
 			p2score += 8
+			timer2 += 10
 		}
 		whereyouguess2 = []
 		guess2 = []
