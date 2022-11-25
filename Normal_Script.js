@@ -174,7 +174,7 @@ function game() {
 
 fill(255,0,0) //red
 		text(timer1, 150, 50); // actually prints the timer
-		if (turn == 1 && frameCount % 1 == 0 && timer1 >= 0) {
+		if (turn == 1 && frameCount % 60 == 0 && timer1 >= 0) {
 			timer1--;
 		} else if (turn == 1) {
 			fill(0, 255, 0)
@@ -190,7 +190,7 @@ fill(255,0,0) //red
 		
 		fill(255,0,0)//red
 		text(timer2, width - 250, 50); // actually prints the timer
-		if (turn == -1 && frameCount % 1 == 0 && timer2 > 0) {
+		if (turn == -1 && frameCount % 60 == 0 && timer2 > 0) {
 			timer2--;
 		} else if (turn == -1) {
 			fill(0, 255, 0)
