@@ -1,7 +1,4 @@
-let grade1phrases = ["girl", "boy", "hello", "four", "cat", "dog", "name"]
-let easyphrases = ["snowman", "seven", "cabbage", "eagles", "rabbets", "vaccine", "lettuce"]
-let hardphrases = ["four knapsacks", "zigzagging zigzags", "jumbo jukeboxes", "jogging wizards", "jovial wyverns", "jinxed xylophones", "ivory iceboxes"]
-let /*(change this when ready to implment) Medphrases*/ phrases = ["fox in a box", "dog at the park", "cat has a hat", "where is the clock", "why are you there", "horse with shoes", "not a phrase"];
+let phrases = ["girl", "boy", "hello", "four", "cat", "dog", "name"]
 let curPhrase;
 let guess, wrongguesses = [];
 let guess2, wrongguesses2 = [];
@@ -77,7 +74,7 @@ function title(){
 
 function selectRandomPhrase() {
 	index = Math.floor(random(0, phrases.length));
-	curPhrase = easyphrases[index];
+	curPhrase = phrases[index];
 	guess = [];
 	wronguesses = [];
 	for (let i = 0; i < curPhrase.length; i++) {
@@ -88,7 +85,7 @@ function selectRandomPhrase() {
 
 function selectRandomPhrase2() {
 	index2 = Math.floor(random(0, phrases.length));
-	curPhrase2 = easyphrases[index2];
+	curPhrase2 = phrases[index2];
 	guess2 = [];
 	wronguesses2 = [];
 	for (let i = 0; i < curPhrase2.length; i++) {
@@ -174,7 +171,7 @@ function game() {
 
 fill(255,0,0) //red
 		text(timer1, 150, 50); // actually prints the timer
-		if (turn == 1 && frameCount % 1 == 0 && timer1 >= 0) {
+		if (turn == 1 && frameCount % 60 == 0 && timer1 >= 0) {
 			timer1--;
 		} else if (turn == 1) {
 			fill(0, 255, 0)
@@ -190,7 +187,7 @@ fill(255,0,0) //red
 		
 		fill(255,0,0)//red
 		text(timer2, width - 250, 50); // actually prints the timer
-		if (turn == -1 && frameCount % 1 == 0 && timer2 > 0) {
+		if (turn == -1 && frameCount % 60 == 0 && timer2 > 0) {
 			timer2--;
 		} else if (turn == -1) {
 			fill(0, 255, 0)
@@ -232,7 +229,8 @@ function showprogress() {
 				line(430, 365, 470, 395)
 				break; // right arm
 			default:
-				p1score /= 2
+				if (p1score>0){
+				p1score -= 1}
 				wrongguesses = []
 				//snowman completed 
 
@@ -267,7 +265,8 @@ function showprogress() {
 				line(width - 430, 365, width - 470, 395)
 				break; // right arm
 			default:
-				p2score /= 2
+				if (p2score>0){
+				p2score -= 1 }
 				wrongguesses2 = []
 				// snowman completed 
 		} // close the weird if statment chain thing (idk what its called)
@@ -301,7 +300,6 @@ function keyPressed() {
 				if (curPhrase[i] === key && !rightguesses.includes(key) && turn == 1) {
 
 					check = true // for later use to prove that there was a correct guess 
-					p1score++
 
 					result.push(i); // again idk why this is here, result is not used anywhere else 
 					guess[i] = key;
@@ -328,7 +326,6 @@ function keyPressed() {
 					turn *= -1 // makes sure timer is not over 
 				else if (curPhrase2[j] === key && !rightguesses2.includes(key) && turn == -1) {
 					check2 = true // for later use to prove there was a correct guess 
-					p2score++
 
 					result2.push(j); // unused 
 					guess2[j] = key;
@@ -375,6 +372,7 @@ function keyPressed() {
 function resetp1() {
 	if (!whereyouguess.includes("_")) {
 		completedphrases += 1
+		wrongguesses=[]
 		rightguesses = []
 		snowballcount+=1
 		notthesamephrase = index
@@ -382,22 +380,9 @@ function resetp1() {
 		while (index == notthesamephrase) {
 			index = Math.floor(random(0, phrases.length));
 		} //close making the current prhase not equal to the last one
-
-		if (completedphrases <= 2) {
-			curPhrase = easyphrases[index];
-			p1score += 3
-			timer1 += 5
-		}
-		if (completedphrases > 2 && completedphrases <= 5) {
 			curPhrase = phrases[index];
-			p1score += 5
-			timer1 += 8
-		}
-		if (completedphrases > 5) {
-			curPhrase = hardphrases[index];
-			p1score += 8
-			timer1 += 10
-		}
+			p1score += 1
+			timer1 += 5
 		whereyouguess = []
 		guess = []
 		for (let i = 0; i < curPhrase.length; i++) {
@@ -412,27 +397,16 @@ function resetp2() {
 	if (!whereyouguess2.includes("_")) {
 		completedphrases2 += 1
 		rightguesses2 = []
+		wrongguesses=[]
 		snowballcount2+=1
 		notthesamephrase2 = index2
 		index2 = Math.floor(random(0, phrases.length));
 		while (index2 == notthesamephrase2) {
 			index2 = Math.floor(random(0, phrases.length));
 		} // close making the current phrase not equal to the last one 
-		if (completedphrases2 <= 2) {
-			curPhrase2 = easyphrases[index2];
-			p2score += 3
-			timer2 += 5
-		}
-		if (completedphrases2 > 2 && completedphrases2 <= 5) {
 			curPhrase2 = phrases[index2];
-			p2score += 5
-			timer2 += 8
-		}
-		if (completedphrases2 > 5) {
-			curPhrase2 = hardphrases[index2];
-			p2score += 8
-			timer2 += 10
-		}
+			p2score += 1
+			timer2 += 5
 		whereyouguess2 = []
 		guess2 = []
 		for (let i = 0; i < curPhrase2.length; i++) {
