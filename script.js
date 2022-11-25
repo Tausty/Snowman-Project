@@ -102,15 +102,21 @@ function game() {
 	if (timer1 <= 1 && timer2 <= 1) {
 		if (p1score > p2score) {
 			clear()
+			textAlign(LEFT)
 			textSize(100)
 			fill(255, 0, 0)
-			text("PLAYER 1 WINS", 100, 100)
+			text("PLAYER 1 WINS", width/4-50, height/2)
+			textSize(40)
+			text("Reload to Play Again", width/3,height/2+200)
 		} // win screen
 		if (p1score < p2score) {
 			clear()
+			textAlign(LEFT)
 			textSize(100)
 			fill(255, 0, 0)
-			text("PLAYER 2 WINS", 100, 100)
+			text("PLAYER 2 WINS", width/4-50, height/2)
+			textSize(40)
+			text("Reload to Play Again", width/3,height/2+200)
 		} // winn screen
 	} // close both timer over check 
 	else {
@@ -158,7 +164,7 @@ function game() {
 
 fill(255,0,0) //red
 		text(timer1, 150, 50); // actually prints the timer
-		if (turn == 1 && frameCount % 60 == 0 && timer1 >= 0) {
+		if (turn == 1 && frameCount % 1 == 0 && timer1 >= 0) {
 			timer1--;
 		} else if (turn == 1) {
 			fill(0, 255, 0)
@@ -174,7 +180,7 @@ fill(255,0,0) //red
 		
 		fill(255,0,0)//red
 		text(timer2, width - 250, 50); // actually prints the timer
-		if (turn == -1 && frameCount % 60 == 0 && timer2 > 0) {
+		if (turn == -1 && frameCount % 1 == 0 && timer2 > 0) {
 			timer2--;
 		} else if (turn == -1) {
 			fill(0, 255, 0)
