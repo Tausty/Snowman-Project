@@ -20,7 +20,7 @@ player with the highest points once both timers run out wins.
 every time you get a letter right by guessing, plus 1 point per letter. If you complete a word, you get points based on the diffuclty of the phrase, and the player receives a snowball   
 
 ### How to Lose Points:
-every time you get a letter wrong, minus one point, also add a part on the snowman. (it has 6 parts) if the snowman is completed lose half your points, and restart the word and snowman. 
+every time you get a letter wrong, add a part on the snowman. (it has 6 parts) if the snowman is completed lose half your points, and restart the snowman. 
 
 ### Difficulty scaling
 There are 3 seperat types of phrases to guess: easy, medium, and hard. The player will first guess 2 easy phrases, then 2 medium, then it will loop hard ones untill the timer runs out.  
@@ -34,10 +34,10 @@ Hard phrases will net you 8 points.
 this is to incentivice playing faster and less careful to try and keep the game at a fast pace. 
 
 ### What is a Snowball: 
-snowballs are used to remove a part off of your snowman, and add one for the enemys. This feature is the least imporant on our list, and might not make it to the final copy. i hope to be able to add it.
+snowballs are used to add one part for the enemys snowman. Press ~ or \ depending on what player you are.
 
 ### Timers:
-there will be a seperate timer for both players (like in chess). once your timer reaches 0 you no longer can guess, or have a snowball thrown at you. once both timers are 0 end the game. whoever has the most points wins. 
+there will be a seperate timer for both players (like in chess). once your timer reaches 0 you no longer can guess, or have a snowball thrown at you. once both timers are 0 end the game. whoever has the most points wins. If you complete a phrase, depending on its diffuctly you receive extra time.
 
 ### Extra rules:
 if you guess a letter that you already guessed, it becomes wrong and adds a snowman peice.
